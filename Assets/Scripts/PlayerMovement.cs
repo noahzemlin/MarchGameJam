@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     public float jumpAcceleration = 400f;
     
     private Rigidbody2D body;
-    private bool onGround = false;
-    private bool jumping = false;
+    
+    [HideInInspector]
+    public bool onGround = false;
+    [HideInInspector]
+    public bool jumping = false;
     
     private void Start()
     {
