@@ -26,4 +26,14 @@
     {
         return ballsCollected;
     }
+
+    public static int GetBallsCollected()
+    {
+        int sum = 0;
+        foreach(bool x in ballsCollected)
+        {
+            sum += x ? 1 : 0;
+        }
+        return sum;
+    }
 }

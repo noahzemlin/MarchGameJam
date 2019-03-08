@@ -13,7 +13,7 @@ public class Dragonball : MonoBehaviour
     {        
         Debug.Log("Collected " + stars + " star ball!");
         GlobalManager.CollectBall(stars);
-        this.gameObject.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     private void OnValidate()

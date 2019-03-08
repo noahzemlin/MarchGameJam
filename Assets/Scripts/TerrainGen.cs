@@ -7,17 +7,28 @@ using Random = System.Random;
 
 public class TerrainGen : MonoBehaviour
 {
-    public int width = 256;
+    public int width = 512;
     public float scale = 0.1f;
     public float height = 5f;
     
     [Range(0,1)]
-    public float chanceOfPlatform = 0.2f;
+    public float chanceOfPlatform = 0.55f;
 
     public GameObject groundPrefab;
+    public GameObject dragonballPrefab;
+    public GameObject enemyPrefab;
     
     [ReadOnly(true)]
     public int seed;
+
+    private Random random = new Random();
+
+    public float getRandomX()
+    {
+        float xpos = UnityEngine.Random.Range(50, width/2);
+        xpos *= UnityEngine.Random.value > 0.5 ? 1 : -1;
+        return xpos;
+    }
     
     private void Awake()
     {
@@ -40,7 +51,27 @@ public class TerrainGen : MonoBehaviour
         
         //Spawn Dragonballs
         
+        for (int i=1; i<=7; i++)
+        {
+            //shake up the randomizer
+            float xpos = getRandomX();
+
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(xpos, 100), Vector2.down);
+
+            GameObject ball = Instantiate(dragonballPrefab, new Vector3(xpos, hit.point.y + 2,1), Quaternion.identity);
+            ball.GetComponent<Dragonball>().stars = i;
+        }
+
         //Spawn Enemies
+
+        for (int i = 1; i <= random.Next(25,30); i++)
+        {
+            float xpos = getRandomX();
+
+            RaycastHit2D hit = Physics2D.Raycast(new Vector2(xpos, 100), Vector2.down);
+
+            GameObject enemy = Instantiate(enemyPrefab, new Vector3(xpos, hit.point.y + 2, 1), Quaternion.identity);
+        }
     }
     
 }

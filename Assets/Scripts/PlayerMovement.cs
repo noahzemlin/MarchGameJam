@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
+    public static GameObject player;
+
     public Transform feetPos;
     public float acceleration = 350f;
     public float maxSpeed = 5f;
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         body = this.GetComponent<Rigidbody2D>();
+        player = this.gameObject;
     }
 
     private void Update()
