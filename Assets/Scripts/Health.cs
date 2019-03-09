@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
 
     public void Damage(int damage)
     {
-        if (Time.time - lastHit > invulnTime)
+        if (!GlobalManager.paused && Time.time - lastHit > invulnTime)
         {
             health -= damage;
             OnHealthChanged(health);

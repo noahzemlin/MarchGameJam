@@ -234,8 +234,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180c2c157b76bf5428df028978b3111d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 100
+  maxHealth: 60
+  health: 60
   invulnTime: 0.05
   lastHit: 0
 --- !u!114 &814071097756627589

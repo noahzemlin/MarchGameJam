@@ -6,11 +6,14 @@ public class Dragonball : MonoBehaviour
     public int stars = 1;
 
     public SpriteRenderer spriteRenderer;
-
+    public bool grabbed = false;
     public Sprite[] sprites;
 
     private void OnTriggerEnter2D(Collider2D other)
-    {        
+    {
+        if (grabbed || other.gameObject.layer != LayerMask.NameToLayer("Player"))
+            return;
+        grabbed = true;
         Debug.Log("Collected " + stars + " star ball!");
         GlobalManager.CollectBall(stars);
         Destroy(this.gameObject);

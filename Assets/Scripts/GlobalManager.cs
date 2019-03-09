@@ -4,6 +4,8 @@
     
     public delegate void BallsChanged();
     public static event BallsChanged OnBallChange;
+
+    public static bool paused = false;
     
     public static void CollectBall(int stars)
     {

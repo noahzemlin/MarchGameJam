@@ -27,6 +27,8 @@ public class PlayerAbilities : MonoBehaviour
 
     private void Update()
     {
+        if (GlobalManager.paused)
+            return;
         if (Input.GetKeyDown(KeyCode.W) && playerMovement.onGround)
         {
             wActiavted = true;
@@ -50,6 +52,8 @@ public class PlayerAbilities : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GlobalManager.paused)
+            return;
         if (wActiavted)
         {
             body.AddForce(Vector2.up * playerMovement.jumpAcceleration * 2f);

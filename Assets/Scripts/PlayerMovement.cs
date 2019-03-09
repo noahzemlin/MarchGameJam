@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if (GlobalManager.paused)
+            return;
         onGround = Physics2D.Linecast(transform.position, feetPos.position, 1<<LayerMask.NameToLayer("Ground"));
 
         if (Input.GetButtonDown("Jump") && onGround)
@@ -37,6 +39,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GlobalManager.paused)
+        {
+            body.velocity = Vector2.zero;
+            return;
+        }
         float horiz = Input.GetAxis("Horizontal");
 
         body.AddForce(Vector2.right * horiz * acceleration);

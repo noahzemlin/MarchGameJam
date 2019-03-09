@@ -25,7 +25,7 @@ public class TerrainGen : MonoBehaviour
 
     public float getRandomX()
     {
-        float xpos = UnityEngine.Random.Range(50, width/2);
+        float xpos = UnityEngine.Random.Range(50, width/2.2f);
         xpos *= UnityEngine.Random.value > 0.5 ? 1 : -1;
         return xpos;
     }

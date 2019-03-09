@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PlayerWinAndLose : MonoBehaviour
 {
     private Health health;
+    public GameObject shenron;
 
     private void resetLevel()
     {
@@ -17,16 +18,26 @@ public class PlayerWinAndLose : MonoBehaviour
     {
         if (newHealth == 0)
         {
+            GlobalManager.Clear();
             resetLevel();
         }
     }
 
-    private void OnDragonballCollect()
+    IEnumerator WaitForShenron()
+    {
+        GlobalManager.paused = true;
+        Instantiate(shenron, this.gameObject.transform.position + Vector3.up * 40f, Quaternion.identity);
+        yield return new WaitForSeconds(10);
+        GlobalManager.Clear();
+        GlobalManager.paused = false;
+        resetLevel();
+    }
+
+     private void OnDragonballCollect()
     {
         if (GlobalManager.GetBallsCollected() == 7)
         {
-            //TODO: Call Shenron on win!
-            resetLevel();
+            StartCoroutine(WaitForShenron());
         }
     }
 

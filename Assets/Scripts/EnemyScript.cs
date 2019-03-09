@@ -31,6 +31,11 @@ public class EnemyScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GlobalManager.paused)
+        {
+            body.velocity = Vector2.zero;
+            return;
+        }
         Vector2 toPlayer = (PlayerMovement.player.transform.position - this.transform.position);
         if (toPlayer.magnitude < detectionRange)
         {
